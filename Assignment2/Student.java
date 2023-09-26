@@ -130,4 +130,17 @@ public class StudentStatisticsApp {
             System.err.println("Error reading file: " + e.getMessage());
         }
     }
+    
+    private static void displayStudentsBelowThreshold(float threshold) {
+        for (Student student : students) {
+            if (student.getTotalMark() < threshold) {
+                System.out.println("Last Name: " + student.getLastName());
+                System.out.println("First Name: " + student.getFirstName());
+                System.out.println("Student ID: " + student.getStudentID());
+                System.out.println("Assignment Marks: " + student.getMarks());
+                System.out.println("Total Marks: " + student.getTotalMark());
+                System.out.println();
+            }
+        }
+    }
 }
