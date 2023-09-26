@@ -131,6 +131,15 @@ public class StudentStatisticsApp {
         }
     }
     
+     private static void displayMenu() {
+        System.out.println("\nMenu:");
+        System.out.println("1. Display students with total marks");
+        System.out.println("2. Display students with total marks below a threshold");
+        System.out.println("3. Display top 5 students with highest total marks");
+        System.out.println("4. Display top 5 students with lowest total marks");
+        System.out.println("5. Exit");
+    }
+    
     private static void displayStudentsBelowThreshold(float threshold) {
         for (Student student : students) {
             if (student.getTotalMark() < threshold) {
