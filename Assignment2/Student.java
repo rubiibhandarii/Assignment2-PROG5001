@@ -70,7 +70,18 @@ public class StudentStatisticsApp {
         
         readFromFile(fileName);
         
+         int choice;
+        do {
+            displayMenu();
+            System.out.print("Enter your choice: "); //A simple menu system to allow users to select and execute each function
+            choice = scanner.nextInt();
+
+            
+        } 
+        while (choice != 5);
+        scanner.close();  
     }
+    
         private static void readFromFile(String fileName) {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
