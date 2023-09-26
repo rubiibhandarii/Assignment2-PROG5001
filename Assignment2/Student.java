@@ -76,7 +76,27 @@ public class StudentStatisticsApp {
             System.out.print("Enter your choice: "); //A simple menu system to allow users to select and execute each function
             choice = scanner.nextInt();
 
-            
+            switch (choice) {
+                case 1:
+                    displayStudentsWithTotalMarks(); //Prints the list of students with total marks
+                    break;
+                case 2:
+                    System.out.print("Enter the threshold: "); //Prints the list of students with total marks less than a certain threshold
+                    float threshold = scanner.nextFloat();
+                    displayStudentsBelowThreshold(threshold);
+                    break;
+                case 3:
+                    displayTopStudents(true);
+                    break;
+                case 4:
+                    displayTopStudents(false);
+                    break;
+                case 5:
+                    System.out.println("Exiting the program.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
         } 
         while (choice != 5);
         scanner.close();  
