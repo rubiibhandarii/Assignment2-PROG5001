@@ -1,4 +1,5 @@
-
+import java.util.List;
+import java.util.Scanner;
 /**
  * Write a description of class Student here.
  *
@@ -23,6 +24,26 @@ class Student
         this.studentID = studentID;
         this.marks = marks;
     }
+    
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getStudentID() {
+        return studentID;
+    }
+
+    public List<Float> getMarks() {
+        return marks;
+    }
+
+public class StudentStatisticsApp {
+
+    private static List<Student> students = new ArrayList<>();
 
     /**
      * An example of a method - replace this comment with your own
@@ -30,9 +51,11 @@ class Student
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public static void main(String[] args) {
+        System.out.println("Welcome!");
+        System.out.println("This program computes statistics of students' marks in an assignment with functional requirements:");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the file name as 'Assignment.csv': "); //The user will provide the given file name.
+        String fileName = scanner.nextLine();
     }
 }
