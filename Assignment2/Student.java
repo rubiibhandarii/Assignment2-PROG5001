@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.List;
 import java.util.Scanner;
 /**
@@ -40,6 +42,14 @@ class Student
     public List<Float> getMarks() {
         return marks;
     }
+    
+    public float getTotalMark() {
+        float total = 0;
+        for (Float mark : marks) {
+            total += mark;
+        }
+        return total;
+    }
 
 public class StudentStatisticsApp {
 
@@ -57,5 +67,36 @@ public class StudentStatisticsApp {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the file name as 'Assignment.csv': "); //The user will provide the given file name.
         String fileName = scanner.nextLine();
+        
+        readFromFile(fileName);
+        
+    }
+        private static void readFromFile(String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            int lineNumber = 0;
+
+            while ((line = br.readLine()) != null) {
+                lineNumber++;
+
+                if (lineNumber < 3) {
+                    continue; // Skip header and comments
+                }
+
+                String[] parts = line.split(",");
+                String lastName = parts[0].trim();
+                String firstName = parts[1].trim();
+                String studentID = parts[2].trim();
+                List<Float> marks = new ArrayList<>();
+
+                for (int i = 3; i < parts.length; i++) {
+                    marks.add(parts[i].isEmpty() ? 0 : Float.parseFloat(parts[i].trim()));
+                }
+
+                students.add(new Student(lastName, firstName, studentID, marks));
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
     }
 }
