@@ -15,8 +15,7 @@ import java.util.Scanner;
  * @author (Rubi Bhandari)
  * @version (9/16/23)
  */
-class Student
-{
+class Student{
     // instance variables 
     private String lastName;
     private String firstName;
@@ -57,6 +56,7 @@ class Student
         }
         return total;
     }
+}
 
 public class StudentStatisticsApp {
 
@@ -202,6 +202,20 @@ public class StudentStatisticsApp {
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
                 if (students.get(j).getTotalMark() < students.get(j + 1).getTotalMark()) {
+                    // Swap
+                    Student temp = students.get(j);
+                    students.set(j, students.get(j + 1));
+                    students.set(j + 1, temp);
+                }
+            }
+        }
+    }
+    
+    private static void bubbleSortLowest(List<Student> students) {
+        int n = students.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (students.get(j).getTotalMark() > students.get(j + 1).getTotalMark()) {
                     // Swap
                     Student temp = students.get(j);
                     students.set(j, students.get(j + 1));
