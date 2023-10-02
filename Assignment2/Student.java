@@ -174,4 +174,40 @@ public class StudentStatisticsApp {
     private static int findMin(int a, int b) {
         return a < b ? a : b;
     }
+    
+    private static void displayTopStudents(boolean highest) {
+        int numStudents = students.size();
+        int maxStudents = 5;
+    
+        System.out.println("Top " + (highest ? "highest" : "lowest") + " " + findMin(numStudents, maxStudents) + " students:");
+    
+        List<Student> sortedStudents = new ArrayList<>(students);
+        if (highest) {
+            bubbleSortHighest(sortedStudents);
+        } else {
+            bubbleSortLowest(sortedStudents);
+        }
+    
+        int numToDisplay = findMin(numStudents, maxStudents);
+        for (int i = 0; i < numToDisplay; i++) {
+            Student student = sortedStudents.get(i);
+            System.out.println((i + 1) + ". Last Name: " + student.getLastName() +
+                    ", First Name: " + student.getFirstName() +
+                    ", Total Marks: " + student.getTotalMark());
+        }
+    }
+    
+    private static void bubbleSortHighest(List<Student> students) {
+        int n = students.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (students.get(j).getTotalMark() < students.get(j + 1).getTotalMark()) {
+                    // Swap
+                    Student temp = students.get(j);
+                    students.set(j, students.get(j + 1));
+                    students.set(j + 1, temp);
+                }
+            }
+        }
+    }
 }
