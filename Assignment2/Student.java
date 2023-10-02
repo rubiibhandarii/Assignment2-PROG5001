@@ -1,7 +1,14 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+
+
+//if empty, replace with 0
 /**
  * Write a description of class Student here.
  *
@@ -70,7 +77,7 @@ public class StudentStatisticsApp {
         
         readFromFile(fileName);
         
-         int choice;
+        int choice;
         do {
             displayMenu();
             System.out.print("Enter your choice: "); //A simple menu system to allow users to select and execute each function
@@ -140,6 +147,17 @@ public class StudentStatisticsApp {
         System.out.println("5. Exit");
     }
     
+    private static void displayStudentsWithTotalMarks() {
+        for (Student student : students) {
+            System.out.println("Last Name: " + student.getLastName());
+            System.out.println("First Name: " + student.getFirstName());
+            System.out.println("Student ID: " + student.getStudentID());
+            System.out.println("Assignment Marks: " + student.getMarks());
+            System.out.println("Total Marks: " + student.getTotalMark());
+            System.out.println();
+        }
+    }
+    
     private static void displayStudentsBelowThreshold(float threshold) {
         for (Student student : students) {
             if (student.getTotalMark() < threshold) {
@@ -151,5 +169,9 @@ public class StudentStatisticsApp {
                 System.out.println();
             }
         }
+    }
+    
+    private static int findMin(int a, int b) {
+        return a < b ? a : b;
     }
 }
